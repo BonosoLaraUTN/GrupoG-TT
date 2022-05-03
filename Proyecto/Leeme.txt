@@ -16,7 +16,7 @@ Herramientas Propuestas:
 Resumen del Proyecto: 
 
 Se trata de un juego sobre guerras de tanques, donde habrá diferentes y diversos niveles,
-con diferentes ambientes y dificultades.
+con diferentes ambientes y dificultades que constara tambien con multijugador.
 
 -Objetivo: El objetivo principal es destruir o acabar con todos tanques enemigos en cada pantalla
 	   con bloques que nos presenta el juego, y además defender la reliquia cercada por bloques
