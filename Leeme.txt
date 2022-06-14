@@ -1,0 +1,49 @@
+Nombre del Proyecto: 
+-WarTanks.
+
+Integrantes:
+-Bonoso Lara
+-Gonzalo Lisanti
+-Mauricio Manzano
+-Eduardo Martinez
+-Javier Scandura
+-Emanuel Toledo
+
+Herramientas Propuestas:
+-Lenguaje: Python con la librería PyGame
+-Editor de código: Visual Studio Code
+
+Resumen del Proyecto: 
+
+Se trata de un juego sobre guerras de tanques, donde habrá diferentes y diversos niveles,
+con diferentes ambientes y dificultades que constara tambien con multijugador.
+
+-Objetivo: El objetivo principal es destruir o acabar con todos tanques enemigos en cada pantalla
+	   con bloques que nos presenta el juego, y además defender la reliquia cercada por bloques
+	   que protegen el objetivo enemigo. Si el enemigo destruye la reliquia, los jugadores pierden;
+	   si acabamos con todos los tanques enemigos logramos avanzar de mapa y aumentamos dificultad. 
+
+-Diseño gráfico: El formato del juego es en 2D con una estética pixelada (8 bits), pero estructurando
+		 muy bien la forma de los tanques, las balas y las explosiones; además el terreno de
+		 cada mapa está conformado por bloques cuadriculados de materiales como: ladrillos,
+		 cemento, hierro, agua y pasto o grava.
+
+-Items y Mejoras: 
+
+	*La Estrella: Permite mejorar de nivel al Tanque que controlamos. En total son 4 niveles de mejora,
+		      cada uno de los cuales brinda una fortaleza para el tanque, por ejemplo al ser
+		      nivel 4 este podrá romper los muros de hierro.
+
+	*El Tanque: Nos aumentará una vida en el juego.
+
+	*El reloj: Hará que los tanques enemigos se congelen por un periodo corto de tiempo, durante el
+		   cual no podrán ni disparar, ni moverse.
+
+	*El escudo: Este brindará una barrera que protegerá al tanque por un lapso corto de tiempo.
+
+	*La Bomba: Para mí el mejor ítem, ya que si lo toman este acabara con todos los tanques que 
+	   	   estén rondando en el mapa.
+
+	*El muro: Esta es una mejora que fortifica el bloque que protege al objetivo y lo convertirá de 
+	 	  ladrillo a hierro por un minuto. En caso de que los bloques ya estuvieran destruidos, 
+		  esta habilidad hace que se vuelvan a reconstruir.
