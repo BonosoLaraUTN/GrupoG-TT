@@ -9,7 +9,10 @@ sprites = pygame.transform.scale(pygame.image.load("imagenes/sprites.gif"), [192
 #pantalla.set_colorkey((0,138,104))
 
 jugadores = []
+enemigos = []
 balas = []
+bonuses = []
+etiquetas = []
 
 reproducir_sonidos = True
 sonidos = {}
