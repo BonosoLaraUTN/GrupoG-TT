@@ -3,7 +3,7 @@ import os, pygame, random, sys
 from Utilidades import *
 from Jugador import *
 from Enemigo import *
-from Estatua import *
+from Castillo import *
 from Nivel import *
 
 class Juego():
@@ -63,7 +63,7 @@ class Juego():
 		mismo.tiempoCongelado = False
 
 		# cargar fuente personalizada
-		mismo.font = pygame.font.Font("fonts/prcomienzo.ttf", 16)
+		mismo.font = pygame.font.Font("fonts/prcomienzo.ttf", 20)
 
 		# pre-renderizar juego sobre texto
 		mismo.acabaJuego = pygame.Surface((110, 35))
@@ -98,8 +98,8 @@ class Juego():
 		elif bonus.bonus == bonus.BONUS_CASCO:
 			mismo.escudoJugador(jugador, True, 10000)
 		elif bonus.bonus == bonus.BONUS_PALA:
-			mismo.nivel.constr_fortaleza(estatua, mismo.nivel.MATERIAL_ACERO)
-			gtemporizador.add(10000, lambda :mismo.nivel.constr_fortaleza(estatua, mismo.nivel.MATERIAL_LADRILLO), 1)
+			mismo.nivel.constr_fortaleza(castillo, mismo.nivel.MATERIAL_ACERO)
+			gtemporizador.add(10000, lambda :mismo.nivel.constr_fortaleza(castillo, mismo.nivel.MATERIAL_LADRILLO), 1)
 		elif bonus.bonus == bonus.BONUS_ESTRELLA:
 			jugador.superPoderes += 1
 			if jugador.superPoderes == 2:
@@ -407,13 +407,13 @@ class Juego():
 
 
 	def dibujar(mismo):
-		global pantalla, estatua
+		global pantalla, castillo
 
 		pantalla.fill([0, 0, 0])
 
 		mismo.nivel.dibujar(pantalla, [mismo.nivel.BALDOSA_VACIA, mismo.nivel.MATERIAL_LADRILLO, mismo.nivel.MATERIAL_ACERO, mismo.nivel.MATERIAL_CONGELADO, mismo.nivel.MATERIAL_AGUA])
 
-		estatua.dibujar(pantalla)
+		castillo.dibujar(pantalla)
 
 		for enemigo in enemigos:
 			enemigo.dibujar(pantalla)
@@ -676,17 +676,17 @@ class Juego():
 	def siguienteNivel(mismo):
 		""" comienza el siguiente nivel """
 
-		global estatua, reproducir_sonidos, sonidos
+		global castillo, reproducir_sonidos, sonidos
 
 		del balas[:]
 		del enemigos[:]
 		del bonuses[:]
-		estatua.rebuild()
+		castillo.rebuild()
 		del gtemporizador.temporizadores[:]
 
 		# cargar nivel
 		mismo.escenario += 1
-		mismo.nivel = Nivel(estatua, mismo.escenario)
+		mismo.nivel = Nivel(castillo, mismo.escenario)
 		mismo.tiempoCongelado = False
 
 		# establecer el número de enemigos por tipos (básico, rápido, poder, armadura) según el nivel
@@ -821,7 +821,7 @@ class Juego():
 				if bala.estado == bala.ESTADO_REMOVIDO:
 					balas.remove(bala)
 				else:
-					bala.actualizar(estatua)
+					bala.actualizar(castillo)
 
 			for bonus in bonuses:
 				if bonus.active == False:
@@ -832,7 +832,7 @@ class Juego():
 					etiquetas.remove(etiqueta)
 
 			if not mismo.game_over:
-				if not estatua.active:
+				if not castillo.active:
 					mismo.juegoTerminado()
 
 			gtemporizador.actualizar(time_passed)
@@ -844,5 +844,5 @@ if __name__ == "__main__":
 	reproducir_sonidos = True
 
 	game = Juego()
-	estatua = Estatua()
+	castillo = Castillo()
 	game.mostrarMenu()

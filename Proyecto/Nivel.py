@@ -1,12 +1,7 @@
 import os
 
 from Utilidades import *
-
-class myRect(pygame.Rect):
-	""" Añadir tipo de propiedad """
-	def __init__(mismo, left, top, width, height, type):
-		pygame.Rect.__init__(mismo, left, top, width, height)
-		mismo.type = type
+from myRect import *
 
 class Nivel():
 
@@ -16,7 +11,7 @@ class Nivel():
 	# ancho/alto del material en px
 	MATERIAL_TAMANIO = 16
 
-	def __init__(mismo, estatua, nr_nivel = None):
+	def __init__(mismo, castillo, nr_nivel = None):
 		""" Hay un total de 35 niveles diferentes. Si nr_nivel es mayor que 35, 
 		pase al siguiente nivel correspondiente, por ejemplo, si nr_nivel es 37, entonces cargue el nivel 2 """
 
@@ -54,11 +49,11 @@ class Nivel():
 		mismo.reacc_obstaculos = []
 
 		# actualizar estas baldosas
-		mismo.actualizarReaccionObst(estatua)
+		mismo.actualizarReaccionObst(castillo)
 
 		gtemporizador.add(400, lambda :mismo.alternar_olas())
 
-	def golpear_baldosa(mismo, estatua, pos, poder = 1, sound = False):
+	def golpear_baldosa(mismo, castillo, pos, poder = 1, sound = False):
 		#Golpea la baldosa
 
 		for baldosa in mismo.mapr:
@@ -67,14 +62,14 @@ class Nivel():
 					if reproducir_sonidos and sound:
 						sonidos["ladrillo"].play()
 					mismo.mapr.remove(baldosa)
-					mismo.actualizarReaccionObst(estatua)
+					mismo.actualizarReaccionObst(castillo)
 					return True
 				elif baldosa.type == mismo.MATERIAL_ACERO:
 					if reproducir_sonidos and sound:
 						sonidos["acero"].play()
 					if poder == 2:
 						mismo.mapr.remove(baldosa)
-						mismo.actualizarReaccionObst(estatua)
+						mismo.actualizarReaccionObst(castillo)
 					return True
 				else:
 					return False
@@ -136,18 +131,18 @@ class Nivel():
 				elif baldosa.type == mismo.MATERIAL_HIERBA:
 					pantalla.blit(mismo.material_hierba, baldosa.topleft)
 
-	def actualizarReaccionObst(mismo, estatua):
+	def actualizarReaccionObst(mismo, castillo):
 		""" Establecer la reaccion a todas las baldosas 
 		que los jugadores pueden destruir con balas """
 
-		mismo.reacc_obstaculos = [estatua.rect]
+		mismo.reacc_obstaculos = [castillo.rect]
 
 		for baldosa in mismo.mapr:
 			if baldosa.type in (mismo.MATERIAL_LADRILLO, mismo.MATERIAL_ACERO, mismo.MATERIAL_AGUA):
 				mismo.reacc_obstaculos.append(baldosa)
 
-	def constr_fortaleza(mismo, estatua, baldosa):
-		""" Construir muros alrededor del estatua hechos de baldosa"""
+	def constr_fortaleza(mismo, castillo, baldosa):
+		""" Construir muros alrededor del castillo hechos de baldosa"""
 
 		posicions = [
 			(11*mismo.MATERIAL_TAMANIO, 23*mismo.MATERIAL_TAMANIO),
@@ -171,4 +166,4 @@ class Nivel():
 		for pos in posicions:
 			mismo.mapr.append(myRect(pos[0], pos[1], mismo.MATERIAL_TAMANIO, mismo.MATERIAL_TAMANIO, baldosa))
 
-		mismo.actualizarReaccionObst(estatua)
+		mismo.actualizarReaccionObst(castillo)
