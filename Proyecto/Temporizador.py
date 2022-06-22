@@ -37,4 +37,4 @@ class Temporizador(object):
 					try:
 						mismo.temporizadores.remove(temporizador)
 					except:
-            			pass
+						pass
